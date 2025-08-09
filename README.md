@@ -51,6 +51,7 @@ the OPAL password if it's set.
 	cryptsetup erase -v --hw-opal-factory-reset /dev/nvme0n1
 
 ### Partition the disks
+You may want to delete existing partitions first.
 Use a partitioning tool like fdisk to modify partition tables:
 
 	fdisk /dev/nvme0n1
@@ -263,7 +264,8 @@ Secure Boot
 -----------
 Before starting, goto BIOS/UEFI put Secure Boot into Setup Mode. On some 
 computers (like the GMKtec G3 Plus), you need to set an administrator
-password for the BIOS/UEFI in order for Setup Mode to be available.
+password for the BIOS/UEFI in order for Setup Mode to be available. Also
+DISABLE the setting to Attempt Secure Boot, otherwise the boot will fail.
 
 ### Check secure boot status:
 
