@@ -420,6 +420,9 @@ goto the file `releasenote.md` in their repository.
 #### TPM2
 	cryptsetup luksDump /dev/nvme0n1p2
 
+#### Firewall
+	sudo firewall-cmd --get-active-zones
+
 ### Check Sound
 	speaker-test -c 2
 
