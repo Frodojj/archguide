@@ -243,13 +243,8 @@ Setup users
 
 Enable services
 ---------------
-	systemctl enable firewalld
-	systemctl enable gpm
-	systemctl enable NetworkManager
-	systemctl enable swapfile.swap
-	systemctl enable systemd-boot-update
-	systemctl enable systemd-resolved
-	systemctl enable systemd-timesyncd
+	systemctl enable firewalld gpm NetworkManager swapfile.swap \
+	systemd-boot-update systemd-resolved systemd-timesyncd
  
 Reboot
 ------
