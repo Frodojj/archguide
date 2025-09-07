@@ -99,22 +99,6 @@
     "tooltip-format": "More"
   },
   "hyprland/workspaces": {
-    "format": " <span face='Noto Sans Symbols' line_height='0.5'>{icon}</span> ",
-    "format-icons": {
-      "1": "➊",
-      "2": "➋",
-      "3": "➌",
-      "4": "➍",
-      "5": "➎",
-      "6": "➏",
-      "7": "➐",
-      "8": "➑",
-      "9": "➒",
-      "10": "➓",
-      "default": "Ⓓ",
-      "special": "Ⓢ",
-      "urgent": "Ⓤ"
-    },
     "on-scroll-up": "hyprctl dispatch workspace m-1",
     "on-scroll-down": "hyprctl dispatch workspace m+1"
   },
