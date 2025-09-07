@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+Copyright 2025 Jimmy Cerra 
+MIT license: Permission granted to use without restriction as long as the
+copyright and license are included with all whole or substantial copies.
+PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
+-->
+<interface>
+  <object class="GtkMenu" id="menu">
+    <child>
+      <object class="GtkMenuItem" id="browser">
+        <property name="label">Browser</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="terminal">
+        <property name="label">Terminal</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="textEditor">
+        <property name="label">Text Editor</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="fileManager">
+        <property name="label">File Manager</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="delimiter1"/>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="logout">
+        <property name="label">Log out</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="suspend">
+        <property name="label">Suspend</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="shutdown">
+        <property name="label">Shutdown</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkSeparatorMenuItem" id="delimiter2"/>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="reboot">
+        <property name="label">Reboot</property>
+      </object>
+    </child>
+  </object>
+</interface>

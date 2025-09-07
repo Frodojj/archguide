@@ -1,0 +1,178 @@
+// -*- mode: jsonc -*-
+// Copyright 2025 Jimmy Cerra 
+// MIT license: Permission granted to use without restriction as long as the
+// copyright and license are included with all whole or substantial copies.
+// PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
+
+{
+  "fixed-center": true,
+  "reload_style_on_change": true,
+  "modules-left": [
+    "hyprland/workspaces",
+    "hyprland/submap"
+  ],
+  "modules-center": [
+
+    "clock"
+  ],
+  "modules-right": [ 
+    "keyboard-state", 
+    "group/settings",
+    "idle_inhibitor",
+    "custom/launcher",
+  ],
+  "group/settings": {
+    "drawer": {
+      //"click-to-reveal": true,
+      "transition-left-to-right": false
+    },
+    "modules": [
+      "custom/left",
+      "tray",
+      "cpu",
+      "memory",
+      "temperature",
+      "wireplumber#sink",
+      "wireplumber#source"
+    ],
+    "orientation": "inherit"
+  },
+  
+  // Modules definitions
+  "clock": {
+    "actions": {
+      "on-click-backward": "tz_up",
+      "on-click-forward": "tz_down",
+      "on-click-middle": "shift_reset",
+      "on-click-right": "mode",
+      "on-scroll-down": "shift_down",
+      "on-scroll-up": "shift_up"
+    },
+    "calendar": {
+      "format": {
+        "days": "{}",
+        "months": "{}",
+        "today": "<span color='#ff6699'>{}</span>",
+        "weekdays": "<span color='#ffcc66'>{}</span>",
+        "weeks": "<span color='#99ffdd'>{}:</span>"
+      },
+      "mode-mon-col": 3,
+      "weeks-pos": "left",
+    },
+    "format": " {:%a, %b %d   %I:%M %p} ",
+    "format-alt": " {:%A, %B %d, %Y   %I:%M %p (<small>%Z</small>)} ",
+    "timezones": [
+      "America/New_York",
+      "America/Los_Angeles",
+      "UTC"
+    ],
+    "tooltip-format": "<tt>{calendar}</tt>"
+  },
+  "cpu": {
+    "format": " {usage}% <span face='Noto Sans Symbols' size='110%'>⏲</span> ",
+    "format-alt": " {avg_frequency} GHz <span face='Noto Sans Symbols' size='110%'>⏲</span> ",
+    "on-scroll-down": "",
+    "on-scroll-up": ""
+  },
+  "custom/launcher": {
+    "format": " <span face='Noto Sans Symbols' line_height='0.5'>🙬</span> ", // ⌘
+    "menu": "on-click-right",
+    "menu-file": "$HOME/.config/waybar/launcher_menu.xml",
+    "menu-actions": {
+      "browser": "hyprctl dispatch exec firefox",
+      "terminal": "hyprctl dispatch exec kitty",
+      "textEditor": "hyprctl dispatch exec 'gnome-text-editor -n'",
+      "fileManager": "hyprctl dispatch exec 'nautilus -w'",
+      "logout": "hyprctl dispatch exit",
+      "reboot": "systemctl reboot",
+      "shutdown": "systemctl poweroff",
+      "suspend": "systemctl suspend"
+    },
+    "on-click": "hyprctl dispatch exec 'rofi -show combi -modes combi -combi-modes window,drun,run'",
+    "on-scroll-up": "hyprctl dispatch workspace m-1",
+    "on-scroll-down": "hyprctl dispatch workspace m+1",
+    "tooltip-format": "Start"
+  },
+  "custom/left": {
+    "format": " <span size='100%'>❮❮</span> ",
+    "on-scroll-down": "",
+    "on-scroll-up": "",
+    "tooltip-format": "More"
+  },
+  "hyprland/workspaces": {
+    "format": " <span face='Noto Sans Symbols' line_height='0.5'>{icon}</span> ",
+    "format-icons": {
+      "1": "➊",
+      "2": "➋",
+      "3": "➌",
+      "4": "➍",
+      "5": "➎",
+      "6": "➏",
+      "7": "➐",
+      "8": "➑",
+      "9": "➒",
+      "10": "➓",
+      "default": "Ⓓ",
+      "special": "Ⓢ",
+      "urgent": "Ⓤ"
+    },
+    "on-scroll-up": "hyprctl dispatch workspace m-1",
+    "on-scroll-down": "hyprctl dispatch workspace m+1"
+  },
+  "idle_inhibitor": {
+    "format": " {icon} ",
+    "format-icons": {
+      "activated": "<span face='Noto Sans Symbols' line_height='0.5'>☼</span>",
+      "deactivated": "<span face='Noto Sans Symbols' line_height='0.5' size='120%'>⏾</span>"
+    },
+    "on-scroll-down": "",
+    "on-scroll-up": ""
+  },
+  "keyboard-state": {
+    "capslock": true,
+    "format": " <span face='Noto Sans Symbols' line_height='0.5'>{icon}</span> ",
+    "format-icons": {
+      "locked": "🄰",
+      "unlocked": " "
+    },
+    "on-scroll-down": "",
+    "on-scroll-up": ""
+  },
+  "memory": {
+    "format": " {percentage}% ⇈ ",
+    "format-alt": " {swapPercentage}% ⇄ ",
+    "on-scroll-down": "",
+    "on-scroll-up": "",
+    "tooltip-format": "{used:0.1f} GiB RAM\n{swapUsed} GiB Swap"
+  },
+  "temperature": {
+    "critical-threshold": 80,
+    "format": " {temperatureC} °C ",
+    "format-alt": " {temperatureF} °F ",
+    "on-scroll-down": "",
+    "on-scroll-up": "",
+    "tooltip-format": "{temperatureC} °C\n{temperatureF} °F"
+  },
+  "tray": {
+    "on-scroll-down": "",
+    "on-scroll-up": "",
+    "spacing": 32
+  },
+  "wireplumber#sink": {
+    "format": " {volume}% <span face='Noto Sans Symbols' line_height='0.5'>{icon}</span> ",
+    "format-muted": " <span face='Noto Sans Symbols' line_height='0.5'>×🕨</span> ",
+    "format-icons": ["🕨","🕩","🕪"],
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle",
+    "on-click-right": "helvum",
+  },
+  "wireplumber#source": {
+    "format": " {volume}% {icon} ",
+    "format-muted": " <span face='Noto Sans Symbols' line_height='0.5' size='85%'>ˣ</span>{icon} ",
+    "format-icons": ["<span face='Noto Sans Symbols' line_height='0.5' size='85%'>🎙</span>"],
+    "node-type": "Audio/Source",
+    "on-click": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "on-click-middle": "wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle",
+    "on-click-right": "helvum",
+  }
+}

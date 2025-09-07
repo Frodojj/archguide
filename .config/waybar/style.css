@@ -1,0 +1,82 @@
+/*
+Copyright 2025 Jimmy Cerra 
+MIT license: Permission granted to use without restriction as long as the
+copyright and license are included with all whole or substantial copies.
+PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
+*/
+
+@define-color text #ffffff;
+@define-color active alpha(@text, 1);
+@define-color hover_bg rgba(0, 0, 0, 0.4);
+@define-color hover_shadow @text;
+@define-color inactive alpha(@text, 0.333);
+@define-color urgent_bg #eb4d4b;
+@define-color window_bg rgba(43, 48, 59, 0.5);
+@define-color window_border rgba(100, 114, 125, 0.5);
+@define-color window_text @text;
+
+* {
+  font-family: Adwaita Sans;
+  font-size: 16pt; /* 12pt = 16px = 12288 pango units */
+}
+
+button {
+  /* Use box-shadow instead of border so the text isn't offset */
+  box-shadow: inset 0 -3px transparent;
+  /* Avoid rounded borders under each button name */
+  border: none;
+  border-radius: 0;
+  background: transparent;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+button.urgent, #workspaces button.urgent {
+  background-color: @urgent_bg;
+}
+
+window#waybar {
+  background-color: @window_bg;
+  border-bottom: 3px solid @window_border;
+  color: @window_text;
+  transition-property: background-color;
+  transition-duration: .25s;
+}
+
+window#waybar.hidden {
+    opacity: 0.2;
+}
+
+.module, #workspaces button {
+  background: transparent;
+  color: inherit;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+/* https://github.com/Alexays/Waybar/wiki/FAQ#the-workspace-buttons-have-a-strange-hover-effect */
+.module:hover, button:hover, #workspaces button:hover, #workspaces button.focused {
+    background: @hover_bg;
+    box-shadow: inset 0 -3px @hover_shadow;
+}
+
+#custom-left, #wireplumber.sink.muted {
+  /* Make two characters look more like 1 character */
+  min-width: 1.75em;
+  letter-spacing: -.25em;
+}
+
+#workspaces, #workspaces:hover {
+  background: transparent;
+  box-shadow: none;
+  margin: 0 0 0 0;
+  padding: 0 0 0 0;
+}
+
+#workspaces .workspace-label {
+  color: @inactive;
+}
+
+#workspaces .active .workspace-label {
+  color: @active;
+}
