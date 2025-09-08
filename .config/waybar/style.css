@@ -36,6 +36,7 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
   min-width: 1.5em;
   letter-spacing: -.25em;
 }
+
 #workspaces button.active {
   background: @active_bg;
 }
