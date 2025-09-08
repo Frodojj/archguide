@@ -17,7 +17,6 @@
   "modules-right": [ 
     "keyboard-state", 
     "group/settings",
-    "idle_inhibitor",
     "custom/launcher",
   ],
   "group/settings": {
@@ -31,6 +30,7 @@
       "cpu",
       "memory",
       "temperature",
+      "idle_inhibitor",
       "wireplumber#sink",
       "wireplumber#source"
     ],
@@ -40,12 +40,12 @@
   // Modules definitions
   "clock": {
     "actions": {
-      "on-click-backward": "tz_up",
-      "on-click-forward": "tz_down",
+      "on-click-backward": "shift_up",
+      "on-click-forward": "shift_down",
       "on-click-middle": "shift_reset",
       "on-click-right": "mode",
-      "on-scroll-down": "shift_down",
-      "on-scroll-up": "shift_up"
+      "on-scroll-down": "tz_up",
+      "on-scroll-up": "tz_down"
     },
     "calendar": {
       "format": {

@@ -12,28 +12,35 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
 @define-color window_bg rgba(43, 48, 59, 0.5);
 
 * {
-  font-family: Adwaita Sans;
+  font-family: Adwaita Sans, Noto Sans Symbols, Noto Sans, Sans;
   font-size: 11pt; /* 12pt = 16px = 12288 pango units */
 }
 
-.module, button {
+.module, #workspaces button {
   border: 1px solid transparent;
   border-radius: 1em;
+  box-shadow: inherit;
   margin: 0 4px 0 4px;
   min-height: 1em;
   min-width: 1em;
   padding: 0 .25em 0 .25em;
+  text-shadow: inherit;
 }
 
-.module:hover, button:hover {
+.module:hover, #workspaces button:hover {
   background: @hover_bg;
 }
 
-#workspaces .active {
+#custom-left, #wireplumber.sink.muted {
+  /* Make two characters look more like 1 character */
+  min-width: 1.5em;
+  letter-spacing: -.25em;
+}
+#workspaces button.active {
   background: @active_bg;
 }
 
-#workspaces .urgent {
+#workspaces button.urgent {
   background: @urgent_bg;
 }
 
@@ -48,3 +55,4 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
   background: transparent;
   border: none;
 }
+
