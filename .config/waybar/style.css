@@ -16,9 +16,11 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
   border: 1px solid transparent;
   border-radius: 1em;
   box-shadow: inherit;
-  min-height: 1em;
+  margin-top: 2px;
+  margin-bottom: 2px;
+  min-height: 1.3em;
   min-width: 1em;
-  padding: 0 .25em 0 .25em;
+  padding: 0 .15em 0 .15em;
   text-shadow: inherit;
 }
 
@@ -27,11 +29,11 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
 }
 
 .modules-left .module {
-  margin: 0 0 0 4px;
+  margin-left: 4px;
 }
 
 .modules-right .module, #workspaces button {
-  margin: 0 4px 0 0;
+  margin-right: 4px;
 }
 
 .sink.muted, #custom-left {
