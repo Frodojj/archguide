@@ -37,14 +37,6 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
   letter-spacing: -.25em;
 }
 
-#workspaces button.active {
-  background: @active_bg;
-}
-
-#workspaces button.urgent {
-  background: @urgent_bg;
-}
-
 #waybar {
   background: @window_bg;
   color: @text;
@@ -57,3 +49,10 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
   border: none;
 }
 
+#workspaces button.active {
+  background: @active_bg;
+}
+
+#workspaces button.urgent {
+  background: @urgent_bg;
+}
