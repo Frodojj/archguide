@@ -13,6 +13,11 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
       </object>
     </child>
     <child>
+      <object class="GtkMenuItem" id="fileManager">
+        <property name="label">File Manager</property>
+      </object>
+    </child>
+    <child>
       <object class="GtkMenuItem" id="terminal">
         <property name="label">Terminal</property>
       </object>
@@ -20,11 +25,6 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
     <child>
       <object class="GtkMenuItem" id="textEditor">
         <property name="label">Text Editor</property>
-      </object>
-    </child>
-    <child>
-      <object class="GtkMenuItem" id="fileManager">
-        <property name="label">File Manager</property>
       </object>
     </child>
     <child>
