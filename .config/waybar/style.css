@@ -22,12 +22,12 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
   background: none;
   border: 0px transparent;
   border-radius: 1em;
-  box-shadow: none;
+  box-shadow: inherit;
   margin: 2px;
   min-height: 1.5em;
   min-width: 1.5em;
   padding: 0 0.25em 0 0.25em;
-  text-shadow: none;
+  text-shadow: inherit;
 }
 
 .module:hover, #workspaces button:hover {
@@ -44,7 +44,6 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
   background: @window_bg;
   border: 2px solid @window_border;
   border-radius: 1em;
-  box-shadow: rgba(26, 26, 26, 238) 4px 4px; /* From hyprland.conf */
   color: @text;
   font-family: Adwaita Sans, Noto Sans Symbols, Noto Sans, Sans;
   font-size: 12pt; /* 12pt = 16px = 12288 pango units */
