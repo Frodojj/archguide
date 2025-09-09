@@ -22,12 +22,12 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
   background: none;
   border: 0px transparent;
   border-radius: 1em;
-  box-shadow: inherit;
+  box-shadow: none;
   margin: 2px;
-  min-height: 1.3em;
-  min-width: calc(1em+2px);
-  padding: 0 .15em 0 .15em;
-  text-shadow: inherit;
+  min-height: 1.5em;
+  min-width: 1.5em;
+  padding: 0 0.25em 0 0.25em;
+  text-shadow: none;
 }
 
 .module:hover, #workspaces button:hover {
@@ -36,7 +36,7 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
 
 .sink.muted, #custom-left {
   /* Make two characters look more like 1 character */
-  min-width: 1.5em;
+  min-width: 1em;
   letter-spacing: -.25em;
 }
 
@@ -47,7 +47,7 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
   box-shadow: rgba(26, 26, 26, 238) 4px 4px; /* From hyprland.conf */
   color: @text;
   font-family: Adwaita Sans, Noto Sans Symbols, Noto Sans, Sans;
-  font-size: 13pt; /* 12pt = 16px = 12288 pango units */
+  font-size: 12pt; /* 12pt = 16px = 12288 pango units */
   transition-property: background-color;
   transition-duration: .25s;
 }
@@ -61,6 +61,10 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
   border: none;
   margin: 0;
   padding: 0;
+}
+
+#workspaces button {
+  font-size: 80%;
 }
 
 #workspaces button.active {
