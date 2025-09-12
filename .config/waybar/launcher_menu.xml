@@ -13,6 +13,11 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
       </object>
     </child>
     <child>
+      <object class="GtkMenuItem" id="calculator">
+        <property name="label">Calculator</property>
+      </object>
+    </child>
+    <child>
       <object class="GtkMenuItem" id="fileManager">
         <property name="label">File Manager</property>
       </object>
