@@ -10,8 +10,7 @@
   "reload_style_on_change": true,
   "modules-left": [
     "hyprland/workspaces",
-    "hyprland/language",
-    "hyprland/submap",
+    "group/hyprland"
   ],
   "modules-center": [
     "clock"
@@ -21,6 +20,18 @@
     "group/settings",
     "custom/launcher"
   ],
+  "group/hyprland": {
+    "drawer": {
+      "click-to-reveal": true,
+      "transition-left-to-right": true
+    },
+    "modules": [
+      "custom/right",
+      "hyprland/language",
+      "hyprland/submap"
+    ],
+    "orientation": "inherit",
+  },
   "group/settings": {
     "drawer": {
       "click-to-reveal": true,
@@ -36,7 +47,7 @@
       "wireplumber#source",
       "idle_inhibitor"
     ],
-    "orientation": "inherit"
+    "orientation": "inherit",
   },
   
   // Modules definitions
@@ -96,7 +107,13 @@
     "tooltip-format": "Launch"
   },
   "custom/left": {
-    "format": " <span size='100%'>❮❮</span> ",
+    "format": "<span size='100%'>❮❮</span>",
+    "on-scroll-down": "hyprctl dispatch workspace m+1",
+    "on-scroll-up": "hyprctl dispatch workspace m-1",
+    "tooltip-format": "More"
+  },
+  "custom/right": {
+    "format": "<span size='100%'>❯❯</span>",
     "on-scroll-down": "hyprctl dispatch workspace m+1",
     "on-scroll-up": "hyprctl dispatch workspace m-1",
     "tooltip-format": "More"

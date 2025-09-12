@@ -35,18 +35,31 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
   background: linear-gradient(45deg, @active_bg, @hover_bg);
 }
 
-.sink.muted, #custom-left {
-  /* Make two characters look more like 1 character */
-  letter-spacing: -.25em;
+.workspace-label {
+  font-size: 85%;
 }
 
-/*.modules-left, .modules-center, .modules-right { #workspaces button { 
-  font-size: 80%;
-}*/
+.sink.muted {
+  /* Make two characters look more like 1 character */
+  letter-spacing: -0.25em;
+  padding-left: .4em;
+  padding-right: .1em;
+}
+
+#custom-left {
+  /* Make two characters look more like 1 character */
+  letter-spacing: -0.3em;
+  padding-right: .3em;
+}
+
+#custom-right {
+  /* Make two characters look more like 1 character */
+  letter-spacing: -0.3em;
+  padding-left: .3em;
+}
 
 #language {
-  margin-left: 0;
-  padding: 0 0.75em 0 0.75em;
+  padding: 0 0.5em 0 0.5em;
 }
 
 #waybar {
@@ -56,7 +69,7 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
   font-family: Adwaita Sans, Noto Sans Symbols, Noto Sans, Sans;
   font-size: 11pt; /* 12pt = 16px = 12288 pango; 1pt = (4/3)px = 1024 pango */
   transition-property: background-color;
-  transition-duration: .25s;
+  transition-duration: .5s;
 }
 
 #waybar > .horizontal {
@@ -66,7 +79,7 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
 #workspaces, #workspaces:hover {
   background: none;
   border: none;
-  margin: 0 2px 0 0;
+  margin: 0;
   padding: 0;
 }
 
