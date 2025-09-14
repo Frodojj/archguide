@@ -236,13 +236,13 @@ setup_ssd() {
 # menu command: install_packages /mnt
 install_packages() {
 	local base='base linux linux-firmware sbctl tpm2-tss'
-	local dev='base-devel git'
+	local dev='base-devel git linux-headers'
 	local fonts='noto-fonts noto-fonts-cjk noto-fonts-emoji noto-fonts-extra'
 	local help='man-db man-pages'
 	local hw='bluez bluez-utils gpm intel-ucode'
 	local net='avahi firewalld networkmanager nss-mdns openssh'
 	local sound='alsa-utils helvum pipewire-alsa pipewire-pulse wireplumber'
-	local utils='aspell bash-completion hunspell nano pacman-contrib sudo'
+	local utils='aspell bash-completion ddcutil hunspell nano pacman-contrib sudo'
 	
 	pacstrap -K "$1" "$base $dev $fonts $help $hw $net $sound $utils"
 }
@@ -251,8 +251,8 @@ install_packages() {
 	# hspell libvoikko 
 	# gnome
 	# 
-	# dunst hyprland hyprlock hyprpaper hyprpicker hyprpolkitagent hypridle  
-	# kitty network-manager-applet waybar xdg-desktop-portal-gtk   
+	# dunst blueman hyprland hyprlock hyprpaper hyprpicker hyprpolkitagent  
+	# hypridle kitty network-manager-applet waybar xdg-desktop-portal-gtk   
 	# xdg-desktop-portal-hyprland
 	# 
 	# qt5-wayland qt6-wayland   
@@ -281,6 +281,21 @@ setup_files() {
 		-i "$1/etc/nsswitch.conf"
 	cp "$1/usr/share/doc/avahi/ssh.service" "$1/etc/avahi/services/"
 
+	# Bluetooth permissions
+	cat > "$1/etc/polkit-1/rules.d/51-blueman.rules" <<- EOF
+	/* Allow users in wheel group to use blueman feature requiring root without authentication */
+	polkit.addRule(function(action, subject) {
+		if ((action.id == "org.blueman.network.setup" ||
+			action.id == "org.blueman.dhcp.client" ||
+			action.id == "org.blueman.rfkill.setstate" ||
+			action.id == "org.blueman.pppd.pppconnect") &&
+			subject.isInGroup("wheel")) {
+
+			return polkit.Result.YES;
+		}
+	});
+	EOF
+	
 	# Verified no syntax errors with visudo -c -f - << EOF...
 	cat > "$1/etc/sudoers.d/01_config" <<- EOF
 		%wheel ALL=(ALL:ALL) ALL
@@ -319,6 +334,9 @@ setup_files() {
 	# Comment _image lines, uncomment _uki lines and rename /efi to /boot
 	sed '/_uki/ {s|^#|| ; s|/efi|/boot|}' -i "$1/etc/mkinitcpio.d/linux.preset"
 	sed '/_image/ s/^/#/' -i "$1/etc/mkinitcpio.d/linux.preset"
+	
+	# Load i2c-dev module so ddcutil can control backlight
+	echo 'i2c-dev' > /etc/modules-load.d/i2cdev.conf
 }
 
 # menu command: setup_programs /mnt
@@ -352,7 +370,7 @@ setup_root() {
 setup_user() {
 	local username
 	read -p 'Enter user name: ' username
-	useradd -m -G input,wheel --root "$1" "$username"
+	useradd -m -G input,lp, wheel --root "$1" "$username"
 	passwd --root "$1" "$username"
 }
 
