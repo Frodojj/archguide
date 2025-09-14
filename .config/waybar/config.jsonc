@@ -91,11 +91,11 @@
     "menu": "on-click-right",
     "menu-file": "$HOME/.config/waybar/launcher_menu.xml",
     "menu-actions": {
-      "browser": "hyprctl dispatch exec firefox",
       "calculator": "hyprctl dispatch exec gnome-calculator",
+      "fileManager": "hyprctl dispatch exec 'nautilus -w'",
       "terminal": "hyprctl dispatch exec kitty",
       "textEditor": "hyprctl dispatch exec 'gnome-text-editor -n'",
-      "fileManager": "hyprctl dispatch exec 'nautilus -w'",
+      "webBrowser": "hyprctl dispatch exec firefox",
       "logout": "hyprctl dispatch exit",
       "reboot": "systemctl reboot",
       "shutdown": "systemctl poweroff",
@@ -119,8 +119,13 @@
     "tooltip-format": "More"
   },
   "hyprland/workspaces": {
+    /*"format": "{icon}",
+    "format-icons": {
+      "special": "S",
+    },*/
     "on-scroll-down": "hyprctl dispatch workspace m+1",
-    "on-scroll-up": "hyprctl dispatch workspace m-1"
+    "on-scroll-up": "hyprctl dispatch workspace m-1",
+    "show-special": true
   },
   "hyprland/submap": {
     "on-scroll-down": "hyprctl dispatch workspace m+1",

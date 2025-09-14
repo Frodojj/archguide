@@ -8,11 +8,6 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
 <interface>
   <object class="GtkMenu" id="menu">
     <child>
-      <object class="GtkMenuItem" id="browser">
-        <property name="label">Browser</property>
-      </object>
-    </child>
-    <child>
       <object class="GtkMenuItem" id="calculator">
         <property name="label">Calculator</property>
       </object>
@@ -30,6 +25,11 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
     <child>
       <object class="GtkMenuItem" id="textEditor">
         <property name="label">Text Editor</property>
+      </object>
+    </child>
+    <child>
+      <object class="GtkMenuItem" id="webBrowser">
+        <property name="label">Web Browser</property>
       </object>
     </child>
     <child>
