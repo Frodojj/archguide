@@ -83,8 +83,8 @@
   "cpu": {
     "format": " {usage}% <span face='Noto Sans Symbols 2' line_height='0.5' size='100%'>⏲</span> ",
     "format-alt": " {avg_frequency} GHz <span face='Noto Sans Symbols 2' line_height='0.5' size='100%'>⏲</span> ",
-    "on-scroll-down": "hyprctl dispatch workspace m+1",
-    "on-scroll-up": "hyprctl dispatch workspace m-1"
+    "on-scroll-down": "hyprctl dispatch workspace +1",
+    "on-scroll-up": "hyprctl dispatch workspace -1"
   },
   "custom/launcher": {
     "format": " <span face='Noto Sans Symbols 2' line_height='0.5' size='100%'>🙬</span> ", // ⌘
@@ -102,20 +102,20 @@
       "suspend": "systemctl suspend"
     },
     "on-click": "hyprctl dispatch exec 'rofi -show combi -modes combi -combi-modes window,drun,run'",
-    "on-scroll-up": "hyprctl dispatch workspace m-1",
-    "on-scroll-down": "hyprctl dispatch workspace m+1",
+    "on-scroll-up": "hyprctl dispatch workspace -1",
+    "on-scroll-down": "hyprctl dispatch workspace +1",
     "tooltip-format": "Launch"
   },
   "custom/left": {
     "format": "<span size='100%'>❮❮</span>",
-    "on-scroll-down": "hyprctl dispatch workspace m+1",
-    "on-scroll-up": "hyprctl dispatch workspace m-1",
+    "on-scroll-down": "hyprctl dispatch workspace +1",
+    "on-scroll-up": "hyprctl dispatch workspace -1",
     "tooltip-format": "More"
   },
   "custom/right": {
     "format": "<span size='100%'>❯❯</span>",
-    "on-scroll-down": "hyprctl dispatch workspace m+1",
-    "on-scroll-up": "hyprctl dispatch workspace m-1",
+    "on-scroll-down": "hyprctl dispatch workspace +1",
+    "on-scroll-up": "hyprctl dispatch workspace -1",
     "tooltip-format": "More"
   },
   "hyprland/workspaces": {
@@ -123,13 +123,13 @@
     "format-icons": {
       "special": "S",
     },*/
-    "on-scroll-down": "hyprctl dispatch workspace m+1",
-    "on-scroll-up": "hyprctl dispatch workspace m-1",
+    "on-scroll-down": "hyprctl dispatch workspace +1",
+    "on-scroll-up": "hyprctl dispatch workspace -1",
     "show-special": true
   },
   "hyprland/submap": {
-    "on-scroll-down": "hyprctl dispatch workspace m+1",
-    "on-scroll-up": "hyprctl dispatch workspace m-1"
+    "on-scroll-down": "hyprctl dispatch workspace +1",
+    "on-scroll-up": "hyprctl dispatch workspace -1"
   },
   "hyprland/language": {
     "format": " <span face='Noto Sans Symbols 2' line_height='0.5' size='100%'>⌨</span> {} ",
@@ -142,8 +142,8 @@
       "activated": "<span face='Noto Sans Symbols 2' line_height='0.75' size='100%'>☀</span>",
       "deactivated": "<span face='Noto Sans Symbols 2' line_height='0.25' size='100%'>⏾</span>"
     },
-    "on-scroll-down": "hyprctl dispatch workspace m+1",
-    "on-scroll-up": "hyprctl dispatch workspace m-1"
+    "on-scroll-down": "hyprctl dispatch workspace +1",
+    "on-scroll-up": "hyprctl dispatch workspace -1"
   },
   "keyboard-state": {
     "capslock": true,
@@ -152,22 +152,22 @@
       "locked": "🄰",
       "unlocked": " "
     },
-    "on-scroll-down": "hyprctl dispatch workspace m+1",
-    "on-scroll-up": "hyprctl dispatch workspace m-1"
+    "on-scroll-down": "hyprctl dispatch workspace +1",
+    "on-scroll-up": "hyprctl dispatch workspace -1"
   },
   "memory": {
     "format": " {percentage}% ⬒ ",
     "format-alt": " {swapPercentage}% ⇄ ",
-    "on-scroll-up": "hyprctl dispatch workspace m-1",
-    "on-scroll-down": "hyprctl dispatch workspace m+1",
+    "on-scroll-up": "hyprctl dispatch workspace -1",
+    "on-scroll-down": "hyprctl dispatch workspace +1",
     "tooltip-format": "{used:0.1f} GiB RAM\n{swapUsed} GiB Swap"
   },
   "temperature": {
     "critical-threshold": 80,
     "format": " {temperatureC} °C ",
     "format-alt": " {temperatureF} °F ",
-    "on-scroll-up": "hyprctl dispatch workspace m-1",
-    "on-scroll-down": "hyprctl dispatch workspace m+1",
+    "on-scroll-up": "hyprctl dispatch workspace -1",
+    "on-scroll-down": "hyprctl dispatch workspace +1",
     "tooltip-format": "{temperatureC} °C\n{temperatureF} °F"
   },
   "tray": {
