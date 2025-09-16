@@ -1,0 +1,14 @@
+# ##############################################################################
+# Copyright 2025 Jimmy Cerra 
+# MIT license: Permission granted to use without restriction as long as the
+# copyright and license are included with all whole or substantial copies.
+# PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
+# ##############################################################################
+
+[default]
+duration = "1m"
+mode = "center"
+sorting = "ascending"
+
+[any]
+path = "~/Backgrounds"
