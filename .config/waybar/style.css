@@ -66,7 +66,7 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
   background: @window_bg;
   border: 2px solid @window_border;
   border-radius: calc(1.5em + 4px);
-  font-family: Adwaita Sans, Noto Sans Symbols, Noto Sans, Sans;
+  font-family: Adwaita Sans, Noto Sans, Sans;
   font-size: 11pt; /* 12pt = 16px = 12288 pango; 1pt = (4/3)px = 1024 pango */
   transition-property: background-color;
   transition-duration: .5s;
