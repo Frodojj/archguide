@@ -6,7 +6,7 @@
 
 {
   "fixed-center": true,
-  "margin": "5 20 0 20", // "gaps_in gaps_out 0 gaps_out" fr hyprland.conf
+  "margin": "5 18 0 18", // "gaps_in gaps_out-border" fr hyprland.conf
   "reload_style_on_change": true,
   "modules-left": [
     "hyprland/workspaces",
