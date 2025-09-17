@@ -1,0 +1,104 @@
+# See dunst(5) for all configuration options
+
+[global]
+### Window ###
+# Location & dimensions, excluding frame; offset from Waybar + hyprland border
+follow = mouse
+height = (0, 500)
+origin = top-right
+offset = (20, 7)
+width = (200, 500)
+
+# Frame around the notification window disabled when frame_width = 0
+# Comma separated list of corners: bottom-right, bottom-left, top-right,
+# top-left, top, bottom, left, right, all
+# Corner radius in px; square when = 0; max = height/2 to avoid clipping
+corners = all
+corner_radius = 15
+frame_color = "#33ccffee"
+frame_width = 2
+
+# Gap/Separator between notifications; uses separator when gap_size = 0
+# Possible values of separator_color: auto, foreground, frame, X color
+gap_size = 5
+separator_color = auto
+separator_height = 2
+
+# Padding between frame/separator and content
+horizontal_padding = 11
+padding = 11
+
+# Max notifications shown; infinite when = 0
+notification_limit = 10
+stack_duplicates = false
+
+# Handlers; dmenu for context menus, browser for opening urls
+dmenu = /usr/bin/rofi -dmenu -l 10 -p dunst
+browser = /usr/bin/xdg-open
+
+### Progress bar ###
+# Square when radius = 0
+# Height includes the frame
+progress_bar_corner_radius = 6
+progress_bar_corners = all
+progress_bar_frame_width = 1
+progress_bar_height = 12
+progress_bar_max_width = 480
+progress_bar_min_width = 180
+
+### Icon ###
+# Recursive icon lookup for themes instead of paths
+# Square when radius = 0
+# Position left, right, top, or off
+enable_recursive_icon_lookup = true
+icon_corner_radius = 5
+icon_corners = all
+icon_position = right
+icon_theme = Adwaita, breeze-dark
+
+#### Text ###
+# Format:
+#   %a  appname
+#   %s  summary
+#   %b  body
+#   %i  iconname (including path)
+#   %I  iconname (without path)
+#   %p  progress value if set ([  0%] to [100%]) or nothing
+#   %n  progress value if set without any extra characters
+#   %%  Literal %
+# Pango allowed when markup = full
+font = Adwaita Sans 11
+format = "<b>%a</b>\n%s\n%b"
+markup = full
+
+
+[urgency_low]
+# IMPORTANT: colors have to be defined in quotation marks.
+# Otherwise the "#" and following would be interpreted as a comment.
+background = "#2b303bee"
+foreground = "#ffffff"
+frame_color = "#33ccffee"
+highlight = "#33ccffee, #00ff99ee"
+timeout = 20
+# Icon for notifications with low urgency
+#default_icon = dialog-information
+
+[urgency_normal]
+background = "#2b303bee"
+foreground = "#ffffff"
+frame_color = "#00ff99ee"
+highlight = "#33ccffee, #00ff99ee"
+timeout = 20
+override_pause_level = 30
+# Icon for notifications with normal urgency
+default_icon = dialog-information
+
+[urgency_critical]
+background = "#2b303bee"
+foreground = "#ffffff"
+frame_color = "#d54e53"
+highlight = "#d54e53, #f0f0f0"
+timeout = 0
+override_pause_level = 60
+# Icon for notifications with critical urgency
+default_icon = dialog-warning
