@@ -6,7 +6,7 @@
 # ##############################################################################
 
 [default]
-duration = "1m"
+duration = "60s"
 mode = "center"
 sorting = "ascending"
 
