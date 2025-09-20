@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/bash -e
 # Copyright 2025 Jimmy Cerra 
 # MIT license: Permission granted to use without restriction as long as the
 # copyright and license are included with all whole or substantial copies.
@@ -6,17 +6,17 @@
 
 
 save_brightness() {
-	ddcutil -t getvcp 10 | awk '{print $4}' > ~/.brightness
+	# Store variable in hyprctl process
+	hyprctl keyword env BRIGHTNESS,$(ddcutil -t getvcp 10 | awk '{print $4}')
 }
 
 set_brightness() {
-	ddcutil setvcp 10 "$1"
+	hyprctl dispatch exec ddcutil setvcp 10 "$1"
 }
 
 restore_brightness() {
-	if test -f ~/.brightness; then
-		ddcutil setvcp 10 $(cat ~/.brightness)
-	fi
+	# Variable needs interpreted by hyprctl process rather than this process
+	hyprctl dispatch exec ddcutil setvcp 10 \$BRIGHTNESS
 }
 
 case "$1" in
