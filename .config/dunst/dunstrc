@@ -1,3 +1,9 @@
+# ##############################################################################
+# Copyright 2025 Jimmy Cerra 
+# MIT license: Permission granted to use without restriction as long as the
+# copyright and license are included with all whole or substantial copies.
+# PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
+# ##############################################################################
 # See dunst(5) for all configuration options
 
 [global]
@@ -73,8 +79,6 @@ markup = full
 
 
 [urgency_low]
-# IMPORTANT: colors have to be defined in quotation marks.
-# Otherwise the "#" and following would be interpreted as a comment.
 background = "#2b303bee"
 foreground = "#ffffff"
 frame_color = "#33ccffee"
