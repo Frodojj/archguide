@@ -1,0 +1,7 @@
+[Unit]
+Description=Change Background periodically
+Requires=nextpaper.service
+
+[Timer]
+AccuracySec=10s
+OnUnitActiveSec=1m

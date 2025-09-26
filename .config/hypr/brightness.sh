@@ -14,7 +14,7 @@ save_brightness() {
 }
 
 set_brightness() {
-	ddcutil setvcp 10 "$1"
+	ddcutil setvcp 10 "$@"
 }
 
 restore_brightness() {
@@ -22,23 +22,37 @@ restore_brightness() {
 	hyprctl dispatch exec ddcutil setvcp 10 \$SAVED_BRIGHTNESS
 }
 
-case "$1" in
-	save)
-		save_brightness
-		if [ "$#" -eq 2 ]; then
-			set_brightness "$2"
-		fi
-		;;
-	set)
-		set_brightness "$2"
-		;;
-	get)
-		get_brightness
-		;;
-	restore)
-		restore_brightness
-		;;
-	*)
-		echo "params: get | set [new int value] | save [optional new int value] | restore"
-		;;
-esac
+cli() {
+	echo "$@"
+	declare cmd="$1"
+	shift
+	case "$cmd" in
+		notify)
+			if [ "$#" -gt 0 ]; then
+				cli "$@"
+			fi
+			declare -i val="$(get_brightness)"
+			notify-send -u low "Brightness: $val%" -h int:value:"$val"
+			;;
+		save)
+			save_brightness
+			if [ "$#" -gt 0 ]; then
+				cli "$@"
+			fi
+			;;
+		set)
+			set_brightness "$@"
+			;;
+		get)
+			get_brightness
+			;;
+		restore)
+			restore_brightness
+			;;
+		*)
+			echo "params: notify <cmds>* | get | set [+-]? <int> | save <cmds>* | restore"
+			;;
+	esac
+}
+
+cli "$@"

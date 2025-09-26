@@ -1,0 +1,6 @@
+[Unit]
+Description=Changes wallpaper
+
+[Service]
+Type=oneshot
+ExecStart=%h/.config/hypr/nextpaper.sh %h/bg/
