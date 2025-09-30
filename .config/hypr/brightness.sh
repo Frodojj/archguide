@@ -19,7 +19,7 @@ set_brightness() {
 
 restore_brightness() {
 	# Variable needs interpreted by hyprctl process rather than this process
-	hyprctl dispatch exec ddcutil setvcp 10 \$SAVED_BRIGHTNESS
+	hyprctl dispatch exec ddcutil --noverify setvcp 10 \$SAVED_BRIGHTNESS
 }
 
 cli() {
