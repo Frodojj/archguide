@@ -32,7 +32,9 @@ cli() {
 				cli "$@"
 			fi
 			declare -i val="$(get_brightness)"
-			notify-send -u low "Brightness: $val%" -h int:value:"$val"
+			notify-send -u low "Brightness: $val%" -h int:value:"$val" \
+				-h string:x-canonical-private-synchronous:brightness\
+				-t 2000
 			;;
 		save)
 			save_brightness
