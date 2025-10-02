@@ -6,14 +6,15 @@
 
 notify_volume() {
 	declare vol=$(wpctl get-volume $1)
-	declare msg="Volume"
+	declare msg=""
+	declare title="Volume"
 	
 	if [[ "$vol" == *"MUTE"* ]]; then
-		msg="Muted, $msg"
+		msg="[Muted]"
 	fi
 	
 	if [[ "$1" == *"SOURCE"* ]]; then
-		msg="Mic $msg"
+		title="Mic $title"
 	fi
 	
 	# Remove letters, spaces, punct, and leading zeroes
@@ -24,6 +25,7 @@ notify_volume() {
 	)
 	
 	notify-send -eu low "$msg $val%" -h int:value:"$val" \
+		-a "$title" \
 		-h string:x-canonical-private-synchronous:volume \
 		-t 1500
 }
