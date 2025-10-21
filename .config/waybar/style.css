@@ -28,6 +28,7 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
   min-height: 1.5em;
   min-width: 1.5em;
   padding: 0.25em;
+  padding-left: calc(0.25em + 0.5px); /* Rounds up odd sizes */
   text-shadow: inherit;
 }
 

@@ -93,6 +93,7 @@
     "menu-actions": {
       "calculator": "hyprctl dispatch exec gnome-calculator",
       "fileManager": "hyprctl dispatch exec 'nautilus -w'",
+      "kbHelp": "hyprctl dispatch exec \"kitty --hold -T \\\"Key-binds help\\\" bash -c \\\"hyprctl -j binds | ~/.config/hypr/hyprbinds.py\\\"\"",
       "terminal": "hyprctl dispatch exec kitty",
       "textEditor": "hyprctl dispatch exec 'gnome-text-editor -n'",
       "webBrowser": "hyprctl dispatch exec firefox",
@@ -119,10 +120,10 @@
     "tooltip-format": "More"
   },
   "hyprland/workspaces": {
-    /*"format": "{icon}",
+    "format": "{icon}",
     "format-icons": {
-      "special": "S",
-    },*/
+      "magic": "M",
+    },
     "on-scroll-down": "hyprctl dispatch workspace m+1",
     "on-scroll-up": "hyprctl dispatch workspace m-1",
     "show-special": true
@@ -149,7 +150,7 @@
     "capslock": true,
     "format": " <span face='Noto Sans Symbols' line_height='0.5' size='100%'>{icon}</span> ",
     "format-icons": {
-      "locked": "🄰",
+      "locked": "🅰", //🄰",
       "unlocked": " "
     },
     "on-scroll-down": "hyprctl dispatch workspace m+1",

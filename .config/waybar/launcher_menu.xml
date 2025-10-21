@@ -18,6 +18,11 @@ PROVIDED "AS IS" WITH NO WARRANTY. THE AUTHOR(S) ARE NOT LIABLE FOR DAMAGES.
       </object>
     </child>
     <child>
+      <object class="GtkMenuItem" id="kbHelp">
+        <property name="label">Help!!!</property>
+      </object>
+    </child>
+    <child>
       <object class="GtkMenuItem" id="terminal">
         <property name="label">Terminal</property>
       </object>
