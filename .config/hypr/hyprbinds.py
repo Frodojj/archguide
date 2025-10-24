@@ -32,6 +32,17 @@ ANSI_CSI = r"\N{ESC}\[" \
 ANSI_ESC_RE = re.compile(ANSI_CSI)
 
 
+# Prints in color!
+# Look up colors: https://en.wikipedia.org/wiki/ANSI_escape_code
+MAGENTAC = "\N{ESC}[95m"
+BLUEC = "\N{ESC}[94m"
+YELLOWC = "\N{ESC}[93m"
+GREENC = "\N{ESC}[92m"
+REDC = "\N{ESC}[91m"
+ENDC = "\N{ESC}[m"
+HC = [ ENDC, MAGENTAC, BLUEC, YELLOWC, GREENC, REDC ]
+
+
 # Key:  shft caps ctl  alt  num  mod3 sup  altg
 #MODS = ["⇧", "⇪", "⌃", "⎇", "⇭", "✦", "❖", "ᴳ"]
 MODS_LIST = {
@@ -59,6 +70,11 @@ ARGS = {
     "r": "right",
     "movewindow": "Moves window",
     "resizewindow": "Resizes window",
+    "swapwithmaster": "Swap main window",
+    "orientationbottom": "Main on bottom",
+    "orientationleft": "Main on top",
+    "orientationright": "Main on right",
+    "orientationtop": "Main on left"
 }
 
 
@@ -68,6 +84,7 @@ DISPATCHERS = {
     "forcekillactive": "Kills window",
     "exit": "Exits hyprland",
     "togglesplit": "Changes split direction",
+    "layoutmsg": "{arg}",
     "pseudo": "Toggle window span",
     "swapnext": "Swap with adjacent",
     "togglefloating": "Toggle float/tile",
@@ -105,10 +122,10 @@ KEYS = {
     "xf86audiolowervolume": "🠗🕨",
     "xf86audiomute": "×🕨",
     "xf86audiomicmute": "ˣ🎙",
-    "xf86audionext": "⏭", # ►►⎸⏭
+    "xf86audionext": "►►⎸", # ►►⎸⏭
     "xf86audiopause": "⏸",
-    "xf86audioplay": "⏯", # ⏯ ►⏸
-    "xf86audioprev": "⏮", # ⏮ ⎹◄◄
+    "xf86audioplay": "►", # ⏵ ⏯ ►⏸
+    "xf86audioprev": "⎹◄◄", # ⏮ ⎹◄◄
     "xf86monbrightnessup": "🠙☼",
     "xf86monbrightnessdown": "🠗☼",
 }
@@ -154,9 +171,15 @@ class StringIOMetrics(StringIO):
         super().__init__(*args, **kwargs)
         self.longest = 0
     def write(self, s, /) -> int:
-        self.longest = max(self.longest, len(s) - escape_length(s))
+        length = len(s) - escape_length(s)
+        self.longest = max(self.longest, length)
         return super().write(s)
-
+    def close(self):
+        self.longest = 0
+        super().close()
+    def metrics(self) -> tuple[str, int]:
+        """Returns (value, longest length)"""
+        return (super().getvalue(), self.longest)
 
 def cli():
     """
@@ -223,11 +246,19 @@ def print_bind(row: dict[str, str], layout: str = "{} {}"):
 
     #Interpret directives in description
     if desc.startswith("!skip"):
+        # E.G. !skip
         return None
     if desc.startswith("!br"):
-        row["description"] = desc.removeprefix("!br")
+        # E.G. !br Description
+        desc = desc.removeprefix("!br").strip()
         print()
+    if desc.startswith("!h"):
+        # E.G. !H Heading: Description
+        descs = desc.removeprefix("!h").split(":", maxsplit=1)
+        print_heading(descs[0].strip(), 2, pre="\n")
+        desc = descs[-1].strip()
 
+    row["description"] = desc
     b = format_bind(**row)
     d = format_desc(**row)
     s = layout.format(b, d)
@@ -235,12 +266,14 @@ def print_bind(row: dict[str, str], layout: str = "{} {}"):
     return None
 
 
-def print_cols(lines: list[str], cols: int = 3, width: int = 24, *,
-               pre: str = "", end: str = "\n"):
+def print_cols(text: str, width: int = 24, max_width = 80, *,
+               pre: str = "", end: str = ""):
     """
-    Prints a list of lines of text in columns. Before the text is pre,
-    and after is end (which has the new line).
+    Prints a lines of text in newspaperilike columns. Before the text
+    is pre, and after is end (then a new line).
     """
+    cols = max_width // width
+    lines = text.splitlines()
     length = len(lines)
     rows = round_up(length / cols)
     for row in range(0, rows):
@@ -252,8 +285,13 @@ def print_cols(lines: list[str], cols: int = 3, width: int = 24, *,
             line = lines[index]
             # To account for ANSI escapes/colors
             total_width = width + escape_length(line)
-            out += f"{pre}{line:{total_width}}"
-        print(out, end=end)
+            out += f"{pre}{line:{total_width}}{end}"
+        print(out)
+
+
+def print_heading(line: str, n = 1, pre: str = ""):
+    """Prints a header of important N in color!"""
+    print(f"{pre}{HC[n]}{line}:{HC[0]}")
 
 
 def round_up(x) -> int:
@@ -280,40 +318,30 @@ def unmask(mask: int, reps: tuple | list, first: int = 0) -> list:
 
 def main() -> int:
     """Runs when script is run."""
-    # Prints in color!
-    # Look up colors: https://en.wikipedia.org/wiki/ANSI_escape_code
-    magenta = "\N{ESC}[95m"
-    # blue = \N{ESC}[94m
-    # yellow = \N{ESC}[93m
-    # green = \N{ESC}[92m
-    # red = \N{ESC}[91m
-    revert = "\N{ESC}[m"
-
     args = cli()
     desc_w = args.desc_width
     bind_w = max(args.bind_width - 1, 0) # because extra space in layout
     layout = f"{{:{bind_w}}} {{:{desc_w}}}"
-    heading = magenta + "{}" + revert
 
-    print() # Whitespace
-    with StringIOMetrics() as buf, redirect_stdout(buf):
-        if args.key:
-            print(heading.format("Modifier key symbols:"))
+    if args.key:
+        print_heading("Key symbols", pre="\n")
+        with StringIOMetrics() as buf, redirect_stdout(buf):
+            print_heading("Modifier keys", 2)
             for kb, d in MODS_LIST.items():
                 print(layout.format(kb, d))
-            print()
-            print(heading.format("Other keyboard symbols:"))
+            print_heading("Others on Keyboard", 2, pre="\n")
             for kb, d in KEYS_DESC.items():
                 print(layout.format(kb, d))
-            print()
-        if not args.hide:
-            print(heading.format("Key-bindings:"))
-            json.load(sys.stdin, object_hook=lambda b: print_bind(b, layout))
-        lines = buf.getvalue()
+            lines, width = buf.metrics()
+        print_cols(lines, width + args.spacing, args.width)
 
-    width = buf.longest + args.spacing
-    cols = args.width // width
-    print_cols(lines.splitlines(), cols, width)
+    if not args.hide:
+        print_heading("Key-bindings", pre="\n")
+        with StringIOMetrics() as buf, redirect_stdout(buf):
+            json.load(sys.stdin, object_hook=lambda b: print_bind(b, layout))
+            lines, width = buf.metrics()
+        print_cols(lines, width + args.spacing, args.width)
+
     return 0
 
 

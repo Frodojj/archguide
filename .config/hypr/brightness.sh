@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/usr/bin/env bash
 # Copyright 2025 Jimmy Cerra 
 # MIT license: Permission granted to use without restriction as long as the
 # copyright and license are included with all whole or substantial copies.
