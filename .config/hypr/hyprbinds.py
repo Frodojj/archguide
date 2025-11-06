@@ -43,17 +43,19 @@ ENDC = "\N{ESC}[m"
 HC = [ ENDC, MAGENTAC, BLUEC, YELLOWC, GREENC, REDC ]
 
 
-# Key:  shft caps ctl  alt  num  mod3 sup  altg
-#MODS = ["⇧", "⇪", "⌃", "⎇", "⇭", "✦", "❖", "ᴳ"]
+# Key:  shft  caps ctl  alt  num  hyp  sup  altg
+#MODS = ["⇧", "$", "⌃", "*", "#", "✦", "!", "ᴳ"]
+#MODS = ["_", "|", "⌃", "*", "#", "?", "!", "~"]
+#MODS = ["_⇧", "⇪⇫🅲🅰🄰", "^⌃⎈✲", "*°⎇⌥⇮ªᵃᵅᴬ", "#⇭🅽", "✦✧", "!❖⌘◆◇", "ᵍᴳ⎄⎅"]
 MODS_LIST = {
     "⇧": "Shift",
     "⇪": "Caps lock",
-    "^": "Control",
+    "⌃": "Control",
     "*": "Alt",
     "⇭": "Num Lock",
-    "◇": "Meta",
+    "✦": "Hypr",
     "❖": "Super",
-    "ᴳ": "Alt Gr"
+    "ᵍ": "Alt Gr"
 }
 
 
@@ -68,26 +70,36 @@ ARGS = {
     "d": "down",
     "l": "left",
     "r": "right",
-    "movewindow": "Moves window",
-    "resizewindow": "Resizes window",
-    "swapwithmaster": "Swap main window",
+    "movetoroot": "Make root window",
+    "movewindow": "Move window",
     "orientationbottom": "Main on bottom",
-    "orientationleft": "Main on top",
+    "orientationleft": "Main on left",
     "orientationright": "Main on right",
-    "orientationtop": "Main on left"
+    "orientationtop": "Main on top",
+    "resizewindow": "Resize window",
+    "swapnext": "Swap windows",
+    "swapnext noloop": "Move down stack",
+    "swapnext loop": "Swap down stack",
+    "swapprev noloop": "Move up stack",
+    "swapprev loop": "Sway up stack",
+    "swapsplit": "Swap split",
+    "swapwithmaster": "Swap main window",
+    "swapwithmaster ignoremaster": "Make main window",
+    "togglesplit": "Change split direction",
 }
 
 
 DISPATCHERS = {
     "exec": "{description}",
-    "killactive": "Closes window",
-    "forcekillactive": "Kills window",
+    "killactive": "Close window",
+    "forcekillactive": "Kill window",
+    "fullscreen": "Toggle maximize",
     "exit": "Exits hyprland",
-    "togglesplit": "Changes split direction",
+    "togglesplit": "Change split direction",
     "layoutmsg": "{arg}",
     "pseudo": "Toggle window span",
     "swapnext": "Swap with adjacent",
-    "togglefloating": "Toggle float/tile",
+    "togglefloating": "Toggle float",
     "resizeactive": "Resize to {arg}",
     "movefocus": "Move focus {arg}",
     "mouse": "{arg}",
@@ -99,58 +111,63 @@ DISPATCHERS = {
 
 
 KEYS = {
-    "delete": "⨯❭", # ᴅᴇʟ 🅳🅴🅻 🄳🄴🄻 🆥 🠶 ⌦ ⨯❭ ■▮▬▶
+    "backspace": "ʙꜱᴘ", # ⌫🠴⟨ʙᴋꜱᴘ]❬⨯⎸
+    "delete": "ᴅᴇʟ", # ⌦🠶[ᴅᴇʟ⟩🅳🅴🅻🄳🄴🄻🆥🅇␡❘⨯❭|x⟩🆇🅇⎹⨯❭
+    "enter": "↵", # ⏎ ↵ ↲ ↩ ⮠ ⌤ ⎆
     "equal": "=",
-    "escape": "⎋",
-    "period": ".",
-    "super_l": MODS[MAIN_INDEX][0],
-    "tab": "⎹⮀⎸", # ⭾ ⮆ tab 
-    "up": "▲", # ▴▲🡑
+    "escape": "⎋", # ⎋ [ᴇꜱᴄ] 🄴🅂🄲 ␛
     "down": "▼", # ▾▼🡓
+    "up": "▲", # ▴▲🡑
     "left": "◀", # ◂◀🡐
     "right": "▶", # ▸▶🡒
-    "prev": "⇞",
-    "next": "⇟",
-    "home": "⤒",
-    "end":  "⤓",
+    "end":  "⤓", # ⤓ ▼\u0333 |⇶|
+    "home": "⤒", # ⤒ ⌂ ⌅ ⌆ ▲\u033F "|⬱|
+    "next": "↧", # ⇟ ▼\u0332 |⇉|
+    "prior": "↥", # ⇞ ▲\u0305 |⇇|
     "mouse:272": "˙🖰",
     "mouse:273": "🖰˙",
     "mouse_up": "🖰⭫", # ⮤⮥ ⭫
     "mouse_down": "🖰⭭", # ⮦⮧ ⭭
-    "xf86search": "⌕", # emoji=2sp; \u0007=del; 🔍 ⌕=telephone rec
-    "xf86audioraisevolume": "🠙🕨",
-    "xf86audiolowervolume": "🠗🕨",
-    "xf86audiomute": "×🕨",
+    "period": ".",
+    "space": "⎵", # ␣_⎵ [ꜱᴘᴄ] [␠]
+    "super_l": "", # MODS[MAIN_INDEX][0],
+    "tab": "⎹⮀⎸", # ⭾⮆tab⇥⎹⮀⎸⮀⎹⇉⎸⇄ ⇆ ⇶ ↦ ↤ ⇤ ↹ 🡒 ⏤▶⎸[␉]
+    "xf86audioraisevolume": "🕪 ", # >1sp so extra sp  🕪 🠙🕨 （🕨 ⭫🕨
+    "xf86audiolowervolume": "🕩 ", # 🕩 🠗🕨 （🕨 ⭭🕨
+    "xf86audiomute": "×🕨", # ×🕨
     "xf86audiomicmute": "ˣ🎙",
-    "xf86audionext": "►►⎸", # ►►⎸⏭
-    "xf86audiopause": "⏸",
+    "xf86audionext": "⏭", # ►►⎸⏭
+    "xf86audioprev": "⏮", # ⏮ ⎹◄◄
     "xf86audioplay": "►", # ⏵ ⏯ ►⏸
-    "xf86audioprev": "⎹◄◄", # ⏮ ⎹◄◄
-    "xf86monbrightnessup": "🠙☼",
-    "xf86monbrightnessdown": "🠗☼",
+    "xf86audiopause": "⏸",
+    "xf86monbrightnessup": "🖵 ⭫", # >1sp 💡🔥🔆\u200B ☼🠙🗤○☉⚞🗦⚬🗧⚟🖵 [|🡅⭫
+    "xf86monbrightnessdown": "🖵 ⭭", # >1sp 💡🔥🔅\u200B ☀🠗🗦[🗦|🡇☀⭭
+    "xf86search": "🔍\u200B", # 🔍=2wsp \u0007=del \u200B=0wsp ⌕=phone rec
 }
 
 
 KEYS_DESC = {
+    KEYS["backspace"]: "Backspace",
     KEYS["delete"]: "Delete",
     KEYS["escape"]: "Escape",
+    KEYS["space"]: "Spacebar",
     KEYS["tab"]: "Tab",
     KEYS["up"]: "Up",
     KEYS["down"]: "Down",
     KEYS["left"]: "Left",
     KEYS["right"]: "Right",
-    KEYS["prev"]: "Pgup",
+    KEYS["prior"]: "Pgup",
     KEYS["next"]: "Pgdn",
     KEYS["home"]: "Home",
     KEYS["end"]: "End",
     KEYS["mouse:272"]: "Right click",
     KEYS["mouse:273"]: "Left click",
-    KEYS["mouse_up"]: "Scroll-wheel up ",
-    KEYS["mouse_down"]: "Scroll-wheel down",
+    KEYS["mouse_up"]: "Scroll up ",
+    KEYS["mouse_down"]: "Scroll down",
     KEYS["xf86search"]: "Search",
-    KEYS["xf86audioraisevolume"]: "Raise vol",
-    KEYS["xf86audiolowervolume"]: "Lower vol",
-    KEYS["xf86audiomute"]: "Mute vol",
+    KEYS["xf86audioraisevolume"]: "Raise volume",
+    KEYS["xf86audiolowervolume"]: "Lower volume",
+    KEYS["xf86audiomute"]: "Mute volume",
     KEYS["xf86audiomicmute"]: "Mute mic",
     KEYS["xf86audionext"]: "Next track",
     KEYS["xf86audiopause"]: "Pause track",
@@ -166,12 +183,11 @@ class StringIOMetrics(StringIO):
     StringIO file class that remembers metrics about what's printed,
     currently only the printing length of the longest line.
     """
-    # TODO: Make work better by subtracting newlines from length
     def __init__(self, *args, **kwargs):
         super().__init__(*args, **kwargs)
         self.longest = 0
     def write(self, s, /) -> int:
-        length = len(s) - escape_length(s)
+        length = len(s) - escape_length(s) - s.count("\n")
         self.longest = max(self.longest, length)
         return super().write(s)
     def close(self):
@@ -208,26 +224,26 @@ def escape_length(text:str):
     """Length of non-printing escape codes in text."""
     return sum(len(esc) for esc in ANSI_ESC_RE.findall(text))
 
-def format_bind(*, bad: str | tuple[str, ...] = (" ", "⎹", "（", "˙"),
-                key: str = "", modmask: str | int = 0, sep: str = " ",
-                **_)-> str:
+def format_bind(*, key: str = "", modmask: int = 0, sep: str = " ",
+                ns: tuple = (" ", "🗦", "⎹", "［", "（", "˙"), **_) -> str:
     """
     Makes a key-binding string from a mask and a keyboard key properties in
     the json row. Some characters (bad) in key strings don't look good with
     with spaces, so no space is added. Also key not displayed if key
     is in mod string, since that's confusing for users.
     """
-    m = sep.join(unmask(int(modmask), MODS, MAIN_INDEX))
+    mods = unmask(modmask, MODS, MAIN_INDEX)
+    m = sep.join(mods)
     k = sub(key, KEYS)
     if not m:
         # So K instead of sepK
         return k
-    if k in m:
-        # So M instead of MsepM
+    if not k: #k in m:
+        # So M instead of Msep
         return m
-    if sep == " " and k.startswith(bad):
+    if sep == " " and k.startswith(ns):
         # Don't add sep for problematic chars
-        return f"{m}{k}"
+        sep = ""
     # Default
     return f"{m}{sep}{k}"
 
@@ -239,8 +255,7 @@ def format_desc(*, arg: str = "", description: str = "",
     disp = sub(dispatcher, DISPATCHERS)
     return disp.format(arg=a, description=description).strip()
 
-
-def print_bind(row: dict[str, str], layout: str = "{} {}"):
+def print_bind(row: dict, layout: str = "{} {}", sep: str = " "):
     """Prints a row from the json."""
     desc = row["description"]
 
@@ -259,7 +274,7 @@ def print_bind(row: dict[str, str], layout: str = "{} {}"):
         desc = descs[-1].strip()
 
     row["description"] = desc
-    b = format_bind(**row)
+    b = format_bind(**row, sep=sep)
     d = format_desc(**row)
     s = layout.format(b, d)
     print(s)
@@ -338,7 +353,8 @@ def main() -> int:
     if not args.hide:
         print_heading("Key-bindings", pre="\n")
         with StringIOMetrics() as buf, redirect_stdout(buf):
-            json.load(sys.stdin, object_hook=lambda b: print_bind(b, layout))
+            json.load(sys.stdin,
+                      object_hook=lambda b: print_bind(b, layout))
             lines, width = buf.metrics()
         print_cols(lines, width + args.spacing, args.width)
 
