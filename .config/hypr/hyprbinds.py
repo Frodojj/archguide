@@ -90,23 +90,24 @@ ARGS = {
 
 
 DISPATCHERS = {
+    "cyclenext": "Move focus {arg}",
+    "exit": "Exits hyprland",
     "exec": "{description}",
-    "killactive": "Close window",
     "forcekillactive": "Kill window",
     "fullscreen": "Toggle maximize",
-    "exit": "Exits hyprland",
-    "togglesplit": "Change split direction",
+    "killactive": "Close window",
     "layoutmsg": "{arg}",
-    "pseudo": "Toggle window span",
-    "swapnext": "Swap with adjacent",
-    "togglefloating": "Toggle float",
-    "resizeactive": "Resize to {arg}",
-    "movefocus": "Move focus {arg}",
     "mouse": "{arg}",
-    "workspace": "Goto workspace {arg}",
-    "togglespecialworkspace": "Toggle special:{arg}", # (⭫⭭)
+    "movefocus": "Move focus {arg}",
     "movetoworkspace": "Move to workspace {arg}",
     "movetoworkspacesilent": "Send to {arg}", # (⭫ 🗖 □ ■ ❏)
+    "pseudo": "Toggle window span",
+    "resizeactive": "Resize to {arg}",
+    "swapnext": "Swap with adjacent",
+    "togglefloating": "Toggle float",
+    "togglespecialworkspace": "Toggle special:{arg}", # (⭫⭭)
+    "togglesplit": "Change split direction",
+    "workspace": "Goto workspace {arg}",
 }
 
 
