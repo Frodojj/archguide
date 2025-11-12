@@ -112,15 +112,16 @@ DISPATCHERS = {
 
 
 KEYS = {
-    "backspace": "ʙꜱᴘ", # ⌫🠴⟨ʙᴋꜱᴘ]❬⨯⎸
-    "delete": "ᴅᴇʟ", # ⌦🠶[ᴅᴇʟ⟩🅳🅴🅻🄳🄴🄻🆥🅇␡❘⨯❭|x⟩🆇🅇⎹⨯❭
-    "enter": "↵", # ⏎ ↵ ↲ ↩ ⮠ ⌤ ⎆
+    "backspace": "⟨⎸", # ⌫🠴🡄🠈⟨ʙᴋꜱᴘ]❬⨯⎸ ⟨←🠈⤝⤙]〈《
+    "comma": ",",
+    "delete": "⎹⟩", # ⌦🠶🡆🠊[ᴅᴇʟ⟩🅳🅴🅻🄳🄴🄻🆥🅇␡❘⨯❭|x⟩🆇🅇⎹⨯❭|→🠊⤚⤞]〉》
+    #"enter": "↵", # ⏎ ↵ ↲ ↩ ⮠ ⌤ ⎆
     "equal": "=",
     "escape": "⎋", # ⎋ [ᴇꜱᴄ] 🄴🅂🄲 ␛
     "down": "▼", # ▾▼🡓
-    "up": "▲", # ▴▲🡑
     "left": "◀", # ◂◀🡐
     "right": "▶", # ▸▶🡒
+    "up": "▲", # ▴▲🡑
     "end":  "⤓", # ⤓ ▼\u0333 |⇶|
     "home": "⤒", # ⤒ ⌂ ⌅ ⌆ ▲\u033F "|⬱|
     "next": "↧", # ⇟ ▼\u0332 |⇉|
@@ -130,6 +131,7 @@ KEYS = {
     "mouse_up": "🖰⭫", # ⮤⮥ ⭫
     "mouse_down": "🖰⭭", # ⮦⮧ ⭭
     "period": ".",
+    "return": "↵", # ⏎ ↵ ↲ ↩ ⮠ ⌤ ⎆
     "space": "⎵", # ␣_⎵ [ꜱᴘᴄ] [␠]
     "super_l": "", # MODS[MAIN_INDEX][0],
     "tab": "⎹⮀⎸", # ⭾⮆tab⇥⎹⮀⎸⮀⎹⇉⎸⇄ ⇆ ⇶ ↦ ↤ ⇤ ↹ 🡒 ⏤▶⎸[␉]
@@ -165,6 +167,7 @@ KEYS_DESC = {
     KEYS["mouse:273"]: "Left click",
     KEYS["mouse_up"]: "Scroll up ",
     KEYS["mouse_down"]: "Scroll down",
+    KEYS["return"]: "Return",
     KEYS["xf86search"]: "Search",
     KEYS["xf86audioraisevolume"]: "Raise volume",
     KEYS["xf86audiolowervolume"]: "Lower volume",
@@ -226,7 +229,8 @@ def escape_length(text:str):
     return sum(len(esc) for esc in ANSI_ESC_RE.findall(text))
 
 def format_bind(*, key: str = "", modmask: int = 0, sep: str = " ",
-                ns: tuple = (" ", "🗦", "⎹", "［", "（", "˙"), **_) -> str:
+                ns: tuple = (" ", "🗦", "⎹", "［", "（", "〈", "《", "˙"),
+                **_) -> str:
     """
     Makes a key-binding string from a mask and a keyboard key properties in
     the json row. Some characters (bad) in key strings don't look good with
