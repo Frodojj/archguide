@@ -10,11 +10,11 @@ LAYOUT=${OUTPUT:5}
 case $LAYOUT in
     "master")
 	    hyprctl keyword general:layout dwindle
-        notify-send -eu normal -a "Hyprland" -t 2000 "Master layout"
+        notify-send -eu normal -a "Hyprland" -t 2000 "Dwindle layout"
 	    ;;
     "dwindle")
 	    hyprctl keyword general:layout master
-        notify-send -eu normal -a "Hyprland" -t 2000 "Dwindle layout"
+        notify-send -eu normal -a "Hyprland" -t 2000 "Master layout"
 	    ;;
     *) ;;
 esac
